@@ -1,4 +1,4 @@
-# Vintage MTGO Metagame ETL
+# Vintage MTGO Metagame Data
 
 ## Overview
 
