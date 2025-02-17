@@ -3,5 +3,6 @@
 # UTILITY FILES
 
 # AUXILIARY FILES
-credentials.txt
+__pycache__/
+modules/credentials.txt
 *.md
