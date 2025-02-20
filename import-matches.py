@@ -3,26 +3,17 @@ import warnings
 from datetime import datetime, timedelta
 import time
 import sys
-import ast
 warnings.filterwarnings('ignore', category=UserWarning, message="pandas only supports SQLAlchemy connectable")
 
 start_time = time.time()
 
-if len(sys.argv) > 1:
-    tuple_str = sys.argv[1]
-    date_tuple = ast.literal_eval(tuple_str)
-
-    month = date_tuple[0]
-    day = date_tuple[1]
-    year = date_tuple[2]
-else:
-    month = 9
-    day = 1
-    year = 2024
-
 # Day 0 is 8-25-2024.
-# start_date = datetime.today().date() - timedelta(days=14)
-start_date = datetime(year, month, day).date()
+if len(sys.argv) > 1:
+    start_date = datetime.strptime(sys.argv[1], '%Y-%m-%d').date()
+else:
+    # start_date = datetime(2024, 8, 25).date()
+    start_date = datetime.today().date() - timedelta(days=14)
+
 end_date = start_date + timedelta(days=7)
 
 df_matches, df_events, load_rep_list, event_skipped_rej = mi.parse_matchup_sheet(start_date=start_date, end_date=end_date)
